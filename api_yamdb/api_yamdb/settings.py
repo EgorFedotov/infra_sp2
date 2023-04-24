@@ -12,7 +12,7 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY', default=None)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', default=False) == 'True'
 
 ALLOWED_HOSTS = ['*']
 
@@ -68,12 +68,12 @@ WSGI_APPLICATION = 'api_yamdb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('DB_ENGINE', default=None),
-        'NAME': os.getenv('DB_NAME', default=None),
-        'USER': os.getenv('POSTGRES_USER', default=None),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default=None),
-        'HOST': os.getenv('DB_HOST', default=None),
-        'PORT': os.getenv('DB_PORT', default=None)
+        'ENGINE': os.getenv('DB_ENGINE', default='django.db.backends.postgresql'),
+        'NAME': os.getenv('DB_NAME', default='postgres'),
+        'USER': os.getenv('POSTGRES_USER', default='postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
+        'HOST': os.getenv('DB_HOST', default='db'),
+        'PORT': os.getenv('DB_PORT', default='5432')
     }
 }
 
